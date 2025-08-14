@@ -1,0 +1,1 @@
+For ESP/FreeRTOS queues: C:\Espressif\home\DSMRP1read\main\mein.c

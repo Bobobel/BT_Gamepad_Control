@@ -1,0 +1,15 @@
+dependencies:
+  atanisoft/esp_lcd_touch_xpt2046: "^1.0.2"
+  idf: ">=5.4"
+  #lvgl/lvgl: ">=8.3.0"   used as a private lib!
+  esp_lcd_ili9341: "^1.0"
+  esp_lcd_gc9a01: "^1.0"
+  # esp_timer: "^5.0" internal
+  # esp_hid: ">=5.4" internal
+#[1/7] atanisoft/esp_lcd_touch_xpt2046 (1.0.6)
+#[2/7] espressif/cmake_utilities (0.5.3)
+#[3/7] espressif/esp_lcd_gc9a01 (1.2.0)
+#[4/7] espressif/esp_lcd_ili9341 (1.2.0)
+#[5/7] espressif/esp_lcd_touch (1.1.2)
+#[6/7] lvgl/lvgl (9.3.0)
+#[7/7] idf (5.3.1)

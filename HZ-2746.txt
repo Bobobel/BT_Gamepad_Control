@@ -1,0 +1,65 @@
+Log f�r den kleinen BT Gamepad/VR controler HZ-2746:
+	
+BT : 01:6a:08:38:47:e8, COD: major: PERIPHERAL, minor: 16, service: 0x001, RSSI: -73, NAME: HZ-2746
+I (9980) ESP_HIDH_DEMO: SCAN: 1 results
+  BT : 01:6a:08:38:47:e8, RSSI: -73, USAGE: GENERIC, COD: PERIPHERAL[KEYBOARD] srv 0x001, UUID16: 0x0000, NAME: HZ-2746
+ASSERT_WARN(2 16), in lc_task.c at line 2525W (12300) BT_HCI: hcif conn complete: hdl 0x81, st 0x0
+W (12300) ESP_HID_GAP: BT GAP EVENT UNKNOWN
+W (12420) BT_SDP: process_service_attr_rsp
+
+W (12560) BT_SDP: process_service_attr_rsp
+
+W (12640) ESP_HID_GAP: BT GAP EVENT UNKNOWN
+W (12670) BT_APPL: new conn_srvc id:23, app_id:4
+I (12690) ESP_HIDH_DEMO: 01:6a:08:38:47:e8 OPEN: 
+BDA:01:6a:08:38:47:e8, Status: OK, Connected: YES, Handle: 0, Usage: KEYBOARD
+Name: , Manufacturer: , Serial Number: 
+PID: 0x3232, VID: 0x05ac, VERSION: 0x0001
+Report Map Length: 182
+   GAMEPAD   INPUT REPORT, ID:   4, Length:   8
+  CCONTROL   INPUT REPORT, ID:   3, Length:   2
+  KEYBOARD   INPUT   BOOT, ID:   1, Length:   8
+  KEYBOARD   INPUT REPORT, ID:   1, Length:   8
+     MOUSE   INPUT   BOOT, ID:   2, Length:   3
+     MOUSE   INPUT REPORT, ID:   2, Length:   4
+W (12850) BT_HCI: hcif mode change: hdl 0x81, mode 2, intv 12, status 0x0
+I (12850) ESP_HID_GAP: BT GAP MODE_CHG_EVT mode:2
+	 
+Manchmal ist der Name nicht zu sehen!
+VID=0x05ac sollte eigentlich zum vendor "Apple" geh�ren?? Dort gibt es aber kein PID3232
+
+Man muss das Ger�t immer (nach dem Batteriewchsel?) neu auf @D/Gamepad einstellen!
+
+Im Modus "Gamepad" gibt es nur zwei input events:
+	1) INPUT:    MOUSE, MAP:  0, ID:   2, Len: 4
+	2) INPUT01: CCONTROL, MAP:  0, ID:   3, Len: 2
+	
+1) Mouse/joystick Bewegungen:
+	00 00 fx 00		: hoch
+	00 00 0x 00		: runter
+	00 fx 00 00		: links
+	00 0x 00 00		: rechts
+	Wobei nicht der ganze Bereich f�r x ausgenutzt wird
+	aber die Nullstellung zuverl�ssig ist:
+	00 00 00 00		: Nullstellung
+	01 00 00 00		: oberer "Feuerknopf" und auch Knopf "A"
+	08 00 00 00		: "B"
+	
+	Beachte aber Feuertaste oben (bzw. "A"):
+Achtung: Ist der obere Feuertaster gedr�ckt und gleichzeitig der Joystick <>0, 
+		dann ist das erste Byte	im Mouse event auch 01 in aller Auslenkungen.
+		00 00 00 00 kommt dann erst nach dem Loslassen des Tasters.
+		Analog ist es mit Taste "B" und dem ersten Byte "08"
+		Mit dem unteren Feuertaster ist das nicht so.
+		"Dauerfeuer" gibt es auch nicht.
+		
+2) Knopf/Tasterdr�cke:
+	46 00			: unterer Feuertaster	im Stadndardmodus
+	e9 00			: "C"
+	ea 00			: "D"
+	
+	Beim Loslassen der Taste kommt zuverl�ssig
+	00 00   
+	
+
+	

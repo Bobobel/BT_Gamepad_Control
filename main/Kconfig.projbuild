@@ -1,0 +1,92 @@
+menu "Example Configuration"
+
+    choice EXAMPLE_LCD_CONTROLLER
+        prompt "LCD controller model"
+        default EXAMPLE_LCD_CONTROLLER_ILI9341
+        help
+            Select LCD controller model
+
+        config EXAMPLE_LCD_CONTROLLER_ILI9341
+            bool "ILI9341"
+
+        config EXAMPLE_LCD_CONTROLLER_GC9A01
+            bool "GC9A01"
+    endchoice
+
+    config EXAMPLE_LCD_TOUCH_ENABLED
+        bool "Enable LCD touch"
+        default y
+        help
+            Enable this option if you wish to use display touch. You can select from touch controllers.
+
+    choice EXAMPLE_LCD_TOUCH_CONTROLLER
+        prompt "LCD touch controller model"
+        depends on EXAMPLE_LCD_TOUCH_ENABLED
+        default EXAMPLE_LCD_TOUCH_CONTROLLER_XPT2046
+        help
+            Select LCD touch controller model
+
+        config EXAMPLE_LCD_TOUCH_CONTROLLER_XPT2046
+            bool "XPT2046"
+            help
+                Touch controller XPT2046 connected via SPI.
+    endchoice
+
+    if EXAMPLE_LCD_TOUCH_CONTROLLER_XPT2046
+	
+		config XPT2046_X_MIN
+			int
+			prompt "Min ADC value for x"
+			depends on  EXAMPLE_LCD_TOUCH_CONTROLLER_XPT2046
+			range 0 4095
+			default 235
+			help
+				Select an integer between 0 and 4095
+
+		config XPT2046_X_MAX
+			int
+			prompt "Max ADC value for x"
+			depends on  EXAMPLE_LCD_TOUCH_CONTROLLER_XPT2046
+			range 0 4095
+			default 3850
+			help
+				Select an integer between 0 and 4095
+				
+		config XPT2046_Y_MIN
+			int
+			prompt "Min ADC value for y"
+			depends on  EXAMPLE_LCD_TOUCH_CONTROLLER_XPT2046
+			range 0 4095
+			default 345
+			help
+				Select an integer between 0 and 4095
+				
+		config XPT2046_Y_MAX
+			int
+			prompt "Max ADC value for y"
+			depends on  EXAMPLE_LCD_TOUCH_CONTROLLER_XPT2046
+			range 0 4095
+			default 3885
+			help
+				Select an integer between 0 and 4095
+	endif
+
+endmenu
+menu "HID Example Configuration"
+    config EXAMPLE_SSP_ENABLED
+        bool "Secure Simple Pairing"
+        depends on BT_CLASSIC_ENABLED
+        default n
+        help
+            This enables the Secure Simple Pairing. If disable this option,
+            Bluedroid will only support Legacy Pairing
+
+    config EXAMPLE_HID_HOST_ENABLED
+        bool "Enable Example HID Host"
+        depends on BT_NIMBLE_ENABLED
+        default y
+        select BT_NIMBLE_HID_SERVICE
+        help
+            This enables Nimble HID Host
+endmenu
+

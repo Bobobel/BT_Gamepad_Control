@@ -1,0 +1,52 @@
+{
+  "idf.openOcdConfigs": [
+    "interface/ftdi/esp32_devkitj_v1.cfg",
+    "target/esp32.cfg"
+  ],
+  "C_Cpp.intelliSenseEngine": "default",
+  "files.associations": {
+    "semphr.h": "c",
+    "esp_hid_gap.h": "c",
+    "esp_hid_host_main.h": "c",
+    "shoPad.h": "c",
+    "bitset": "c",
+    "string_view": "c",
+    "regex": "c",
+    "esp_attr.h": "c",
+    "esp_lcd_panel_io.h": "c",
+    "esp_mac.h": "c",
+    "spi_master.h": "c",
+    "esp_log.h": "c",
+    "esp_hid_common.h": "c",
+    "esp_event.h": "c",
+    "esp_bt_defs.h": "c",
+    "esp_err.h": "c",
+    "task.h": "c",
+    "esp_gap_bt_api.h": "c",
+    "esp_bt_device.h": "c",
+    "unistd.h": "c",
+    "stdio.h": "c",
+    "param.h": "c",
+    "freertos.h": "c",
+    "stddef.h": "c",
+    "inttypes.h": "c",
+    "stdint.h": "c",
+    "stdbool.h": "c",
+    "_ansi.h": "c",
+    "newlib.h": "c",
+    "sdkconfig.h": "c",
+    "lock.h": "c",
+    "esp_task_wdt.h": "c",
+    "esp_lcd_touch_xpt2046.h": "c",
+    "esp_heap_caps.h": "c"
+  },
+  "idf.portWin": "COM4",
+  "idf.espIdfPathWin": "c:\\Espressif\\esp-idf-v5.3.1",
+  "idf.toolsPathWin": "C:\\Espressif\\esp-idf-v5.3.1\\tools",
+  "idf.pythonInstallPath": "C:\\Espressif\\esp-idf-v5.3.1\\tools\\tools\\idf-python\\3.11.2\\python.exe",
+  "idf.flashType": "UART",
+  "idf.monitorPort": "COM4",
+  "idf.customExtraVars": {
+    "IDF_TARGET": "esp32"
+  }
+}
